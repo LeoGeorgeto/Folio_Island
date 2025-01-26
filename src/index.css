@@ -1,0 +1,672 @@
+/* ==================================
+   1. Base Imports & Settings
+   ================================== */
+   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+   @tailwind base;
+   @tailwind components;
+   @tailwind utilities;
+   
+   :root {
+     --blue-rgb: 237 245 255;
+     --green-rgb: 125 161 35;
+     --nav-blue-light: #00c6ff;
+     --nav-blue-dark: #0072ff;
+     --button-pop-distance: 4px;
+     --sunset-light: #ff9966;
+     --sunset-dark: #ff5e62;
+   }
+   
+   /* ==================================
+      2. Core Styles
+      ================================== */
+   body {
+     font-family: "Work Sans", sans-serif;
+   }
+   
+   body:has(.card[data-color="blue"]:hover) {
+     background-color: rgb(var(--blue-rgb) / 25%);
+   }
+   
+   body:has(.card[data-color="green"]:hover) {
+     background-color: rgb(var(--green-rgb) / 25%);
+   }
+   
+   @layer utilities {
+     /* Layout Utilities */
+     .max-container {
+       @apply max-w-5xl mx-auto sm:p-16 pb-12 !pt-[126px] px-8 min-h-screen h-full;
+     }
+   
+     /* Typography Utilities */
+     .head-text {
+       @apply sm:text-5xl text-3xl font-semibold sm:leading-snug font-poppins;
+     }
+   
+     .subhead-text {
+       @apply font-semibold sm:text-3xl text-xl relative font-poppins;
+     }
+   
+     .sound-button {
+       background-size: 200% auto;
+       animation: shine 3s linear infinite;
+       transition: all 0.3s ease;
+     }
+   
+     /* Gradient Text Utilities */
+     .sunset-gradient_text {
+       @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--sunset-light)] via-[var(--sunset-dark)] to-[var(--sunset-light)] bg-size-200;
+     }
+   
+     .blue-gradient_text {
+       @apply bg-gradient-to-r from-[#00c6ff] to-[#0072ff] bg-clip-text text-transparent;
+     }
+   
+     .info-btn-gradient_text {
+       @apply bg-clip-text text-transparent bg-gradient-to-r from-[#00c6ff] to-[#0072ff] bg-size-200;
+       animation: shine 3s linear infinite;
+       text-shadow: 
+         0 0 8px rgba(0, 198, 255, 0.4),
+         0 0 15px rgba(0, 114, 255, 0.2);
+     }
+     
+     .info-btn-animated_text {
+       @apply bg-clip-text text-transparent bg-gradient-to-r from-[#00c6ff] via-[#0072ff] to-[#00c6ff] bg-size-200;
+       animation: shine 2s linear infinite;
+       text-shadow: 
+         0 0 10px rgba(0, 198, 255, 0.5),
+         0 0 20px rgba(0, 114, 255, 0.3),
+         0 0 30px rgba(0, 198, 255, 0.2);
+     }
+   
+     /* Form Elements */
+     .input {
+       @apply bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-2.5 font-normal shadow-card;
+     }
+   
+     .textarea {
+       @apply block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-200 focus:ring-blue-500 focus:border-blue-500 mt-2.5 font-normal shadow-card;
+     }
+   
+     .btn {
+      @apply text-white bg-gradient-to-r from-[#00c6ff] to-[#0072ff] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-3 text-center w-fit;
+    }
+   
+     /* Layout Components */
+     .header {
+       @apply flex justify-between items-center sm:px-16 px-8 py-4 max-w-5xl mx-auto absolute top-0 bg-transparent z-10 right-0 left-0;
+     }
+   
+     .footer {
+      @apply max-w-5xl mx-auto sm:px-16 pb-4 sm:pb-6 px-8 flex flex-col gap-4 sm:gap-7;
+     }
+
+     .footer-container {
+      @apply flex flex-wrap gap-1 sm:gap-7 items-center justify-between sm:-my-2 ;
+     }
+   
+     /* Info Box */
+     .info-box {
+       @apply mx-5 relative flex text-white flex-col gap-3 max-w-2xl neo-brutalism-blue pt-4 pb-12 px-8;
+     }
+   
+     .neo-btn {
+       @apply py-3 px-6 rounded-lg text-blue-500 text-center font-semibold sm:w-1/2 w-[90%] -bottom-5 absolute mx-auto right-0 left-0 flex justify-center items-center gap-3;
+     }
+   
+     /* CTA Section */
+     .cta {
+      @apply w-full flex items-center md:flex-row flex-col sm:mt-16 mt-8 gap-7;
+    }
+    
+    .cta-text {
+      @apply text-black-500 font-extrabold flex-1 text-2xl sm:text-3xl max-md:text-center;
+    }
+   
+     /* Animated Text */
+     .animated-gradient_text {
+       @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--sunset-light)] via-[var(--sunset-dark)] to-[var(--sunset-light)] bg-size-200;
+     }
+     
+     .animated-gradient_text:hover {
+       animation: shine 1s linear infinite;
+       filter: brightness(1.4) contrast(1.2);
+       text-shadow: 
+         0 0 15px rgba(255, 153, 102, 0.6),
+         0 0 25px rgba(255, 94, 98, 0.4),
+         0 0 35px rgba(255, 153, 102, 0.3);
+     }
+     
+     .glow-effect {
+       @apply transition-all duration-300;
+       animation: glow 2s ease-in-out infinite;
+     }
+   
+     .skill-label {
+       position: absolute;
+       bottom: -1.5rem;
+       left: 50%;
+       transform: translateX(-50%);
+       opacity: 0;
+       z-index: 10;
+       transition: all 0.3s ease-in-out;
+       font-size: 0.75rem;
+       font-weight: 300;
+       color: rgb(71, 85, 105);
+       white-space: nowrap;
+     }
+   
+     .block-container:hover .skill-label {
+       @apply opacity-100;
+     }
+   }
+
+   /* ==================================
+   3. Animations
+   ================================== */
+@keyframes shine {
+  0% {
+    background-position: 0% center;
+    filter: brightness(1.2);
+  }
+  50% {
+    filter: brightness(1.4);
+  }
+  100% {
+    background-position: 200% center;
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 5px rgba(255, 153, 102, 0.5),
+      0 0 10px rgba(255, 94, 98, 0.3),
+      inset 0 0 5px rgba(255, 153, 102, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 0 15px rgba(255, 153, 102, 0.7),
+      0 0 20px rgba(255, 94, 98, 0.5),
+      inset 0 0 10px rgba(255, 153, 102, 0.5);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 
+      0 0 15px var(--nav-blue-light),
+      0 0 30px var(--nav-blue-dark),
+      0 0 45px var(--nav-blue-light);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px var(--nav-blue-light),
+      0 0 40px var(--nav-blue-dark),
+      0 0 60px var(--nav-blue-light);
+  }
+}
+
+@keyframes buttonPress {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-4px);
+  }
+}
+
+/* ==================================
+   4. Navigation & Button Styles
+   ================================== */
+.nav-button-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+.nav-button-3d::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #e0e7ff 0%, #ffffff 100%);
+  border-radius: 8px;
+  transform: translateZ(-1px);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+}
+
+.nav-button-3d:hover::before {
+  box-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+}
+
+.nav-3d-button {
+  position: relative;
+  transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 4px -2px rgba(0, 114, 255, 0.3),
+    0 4px 8px -4px rgba(0, 198, 255, 0.3),
+    0 -2px 6px -2px rgba(255, 255, 255, 0.3) inset,
+    0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.nav-3d-button:hover {
+  transform: translateY(calc(var(--button-pop-distance) * -1));
+  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 114, 255, 0.4),
+    0 6px 12px -2px rgba(0, 198, 255, 0.3),
+    0 -2px 6px -2px rgba(255, 255, 255, 0.4) inset,
+    0 4px 8px -2px rgba(0, 0, 0, 0.15);
+}
+
+.nav-3d-button:active {
+  transform: translateY(2px);
+  transition: transform 0.1s ease-in;
+  box-shadow: 
+    0 1px 2px -1px rgba(0, 114, 255, 0.3),
+    0 2px 4px -2px rgba(0, 198, 255, 0.2),
+    0 -1px 3px -1px rgba(255, 255, 255, 0.2) inset,
+    0 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.nav-button-3d:active {
+  transform: translateY(2px);
+}
+
+.animate-buttonPress {
+  animation: buttonPress 0.2s forwards;
+}
+
+/* ==================================
+   5. Block Container Styles
+   ================================== */
+.block-container {
+  position: relative;
+  transition: 250ms;
+  perspective: 500px;
+  isolation: isolate;
+}
+
+.block-container .btn-back {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: inherit;
+  height: inherit;
+  transition: 250ms;
+  transform-style: preserve-3d;
+  transform-origin: bottom right;
+  transform: rotateZ(15deg);
+  will-change: transform;
+  box-shadow: 16px 0 40px #e4e4e4;
+  isolation: isolate;
+}
+
+.block-container .btn-front,
+.block-container .btn-back {
+  border-radius: 1rem;
+}
+
+.block-container .btn-front-shimmer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: inherit;
+  height: inherit;
+  background: linear-gradient(120deg, 
+    rgba(0, 198, 255, 0.1), 
+    rgba(0, 114, 255, 0.1)
+  );
+  backdrop-filter: blur(20px);
+  transition: 250ms;
+  transform-style: preserve-3d;
+  transform-origin: top left;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 198, 255, 0.2);
+  box-shadow: 
+    0 0 15px rgba(0, 198, 255, 0.2),
+    0 0 30px rgba(0, 114, 255, 0.1);
+  animation: shine 3s linear infinite;
+}
+
+.block-container .btn-back-shimmer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: inherit;
+  height: inherit;
+  background: linear-gradient(to right,
+    var(--nav-blue-light),
+    var(--nav-blue-dark),
+    var(--nav-blue-light)
+  );
+  background-size: 200% auto;
+  transition: 250ms;
+  transform-style: preserve-3d;
+  transform-origin: bottom right;
+  transform: rotateZ(15deg);
+  will-change: transform;
+  animation: shine 3s linear infinite;
+  box-shadow: 
+    16px 0 40px rgba(0, 198, 255, 0.3),
+    0 0 20px rgba(0, 114, 255, 0.2);
+}
+
+/* Button Back Color Variations */
+.block-container .btn-back-red { background: linear-gradient(135deg, #ff4b1f -20%, #ff9068 120%); }
+.block-container .btn-back-green { background: linear-gradient(135deg, #adfda2 -20%, #11d3f3 120%); }
+.block-container .btn-back-yellow { background: linear-gradient(135deg, #f7971e -20%, #ffd200 120%); }
+.block-container .btn-back-blue { background: linear-gradient(135deg, #0061ff -20%, #60efff 120%); }
+.block-container .btn-back-orange { background: linear-gradient(135deg, #ff0f7b -20%, #f89b29 120%); }
+.block-container .btn-back-pink { background: linear-gradient(135deg, #e81cff -20%, #40c9ff 120%); }
+.block-container .btn-back-black { background: linear-gradient(135deg, #0a1647 -20%, #e4e7e4 120%); }
+.block-container .btn-back-sunset { background: linear-gradient(135deg, #ff9966 -20%, #ff5e62 120%); }
+
+/* Button Front Styles */
+.block-container .btn-front-ab {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: inherit;
+  height: inherit;
+  background-color: #ffffff33;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  transition: 250ms;
+  transform-style: preserve-3d;
+  transform-origin: top left;
+  overflow: hidden;
+}
+
+.block-container .btn-back-ab {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: inherit;
+  height: inherit;
+  transition: 250ms;
+  transform-style: preserve-3d;
+  transform-origin: bottom right;
+  transform: rotateZ(15deg);
+  will-change: transform;
+  box-shadow: 16px 0 40px #e4e4e4;
+}
+
+.block-container .btn-front {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: inherit;
+  height: inherit;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  transition: 250ms;
+  transform-style: preserve-3d;
+  transform-origin: top left;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.block-container .btn-front-p {
+  /* Positioning */
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  
+  /* Dimensions */
+  width: inherit;
+  height: inherit;
+  
+  /* Background & Transparency */
+  background-color: rgba(255, 255, 255 );
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.1)
+  );
+  
+  /* Backdrop Filter */
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  
+  /* Transform Properties */
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin: top left;
+  -moz-transform-origin: top left;
+  transform-origin: top left;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  transform: translateZ(0);
+  
+  /* Other Properties */
+  transition: 250ms;
+  overflow: hidden;
+  border: none;
+  
+  /* Vendor Prefixes for Background */
+  -webkit-background-color: rgba(255, 255, 255, 0.1);
+  -moz-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.block-container .btn-front-p img {
+  position: relative;
+  z-index: 2;
+  filter: brightness(0) invert(1);
+}
+
+/* Mobile Specific Styles */
+@media (max-width: 768px) {
+  .block-container .btn-front-p {
+    background-color: linear-gradient(120deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border: none;
+    /* Ensure hardware acceleration on mobile */
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 0.3;
+  }
+
+  .block-container .btn-front-p > img {
+    position: relative !important;
+    z-index: 999 !important;
+    filter: brightness(0) invert(1) !important;
+    opacity: 1 !important;
+    mix-blend-mode: difference !important;
+  }
+}
+
+/* Safari-specific fixes */
+@supports (-webkit-backdrop-filter: none) {
+  .block-container .btn-front-p {
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
+}
+
+/* Firefox-specific fixes */
+@-moz-document url-prefix() {
+  .block-container .btn-front-p {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+.nav-animated-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-animated-btn::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  background: linear-gradient(to right, 
+    var(--sunset-light), 
+    var(--sunset-dark), 
+    var(--sunset-light)
+  );
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.nav-animated-btn::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: white;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.nav-animated-btn:hover::before {
+  animation: borderGlow 1.5s ease-in-out infinite;
+}
+
+.nav-animated-btn:hover .blue-gradient_text,
+.nav-animated-btn:hover .info-btn-animated_text {
+  animation: shine 2s linear infinite;
+  text-shadow: 
+    0 0 10px rgba(0, 198, 255, 0.5),
+    0 0 20px rgba(0, 114, 255, 0.3),
+    0 0 30px rgba(0, 198, 255, 0.2);
+  filter: brightness(1.2);
+}
+
+.nav-animated-btn:hover .blue-gradient_text {
+  background: linear-gradient(to right, #00c6ff, #0072ff, #00c6ff);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-animated-btn:hover + .btn-back {
+  background: linear-gradient(to right,
+    var(--sunset-light),
+    var(--sunset-dark),
+    var(--sunset-light)
+  );
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
+}
+
+/* ==================================
+   6. Hover & Animation Effects
+   ================================== */
+.block-container:hover > .btn-front::before {
+  animation: shine 2s linear infinite;
+  background-size: 200% auto;
+}
+
+.block-container:hover > .btn-back {
+  transform: translateZ(20px) rotateZ(15deg) rotateX(-20deg) rotateY(-20deg);
+}
+
+.block-container:hover > .btn-front {
+  transform: translateZ(150px) translateY(5px) rotateX(-15deg) rotateY(15deg);
+  border-image: linear-gradient(to right, var(--sunset-light), var(--sunset-dark), var(--sunset-light)) 1;
+}
+
+.block-container.reverse-motion:hover > .btn-back {
+  transform: translateZ(20px) rotateZ(-15deg) rotateX(20deg) rotateY(20deg);
+}
+
+.block-container.reverse-motion:hover > .btn-front {
+  transform: translateZ(120px) translateY(-5px) rotateX(-15deg) rotateY(-15deg);
+  border-image: linear-gradient(to right, var(--sunset-light), var(--sunset-dark), var(--sunset-light)) 1;
+}
+
+.block-container.down-right-motion:hover > .btn-back {
+  transform: translateZ(20px) rotateZ(15deg) rotateX(20deg) rotateY(-20deg);
+}
+
+.block-container.down-right-motion:hover > .btn-front {
+  transform: translateZ(80px) translateY(-5px) rotateX(-15deg) rotateY(15deg);
+  border-image: linear-gradient(to right, var(--sunset-light), var(--sunset-dark), var(--sunset-light)) 1;
+}
+
+.btn-back.hover {
+  transform: translateZ(20px) rotateZ(15deg) rotateX(-20deg) rotateY(-20deg);
+  transition: transform 0.3s ;
+}
+
+
+
+/* Block Container AB Motion Effects */
+.block-container:hover > .btn-back-ab {
+  transform: translateZ(20px) rotateZ(15deg) rotateX(-20deg) rotateY(-20deg);
+}
+
+.block-container:hover > .btn-front-ab {
+  transform: translateZ(80px) translateY(-5px) rotateX(15deg) rotateY(15deg);
+  border-image: linear-gradient(to right, var(--nav-blue-light), var(--nav-blue-dark), var(--nav-blue-light)) 1;
+}
+
+.block-container:hover > .btn-front-ab span {
+  opacity: 1;
+  transform: translate(-50%, 0) translateZ(80px);
+}
+
+/* ==================================
+   7. Special Effects
+   ================================== */
+.neo-brutalism-blue {
+  background: #2b77e7;
+  position: relative;
+  border-radius: 10px;
+  border: #2b77e7;
+  box-shadow: 0.6vmin 0.6vmin #336cc1, 1vmin 1vmin #0092db, 1vmin 1vmin #0092db,
+    0.65vmin 1vmin #0092db, 1vmin 0.65vmin #0092db;
+}
+
+.neo-brutalism-white {
+  background: #fff;
+  border: #fff;
+  box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
+    0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
+}
+
+.glassmorphism {
+  background: rgba(8, 116, 239, 0.07);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.glow-effect {
+  box-shadow: 
+    0 0 15px var(--nav-blue-light),
+    0 0 30px var(--nav-blue-dark),
+    0 0 45px var(--nav-blue-light);
+  animation: shine 2s linear infinite;
+  transition: all 0.3s ease;
+}
+
+/* ==================================
+   8. Utility Classes
+   ================================== */
+.bg-size-200 {
+  background-size: 200% auto;
+}
+
+.blue-gradient_text,
+.animated-gradient_text {
+  transition: all 0.3s ease;
+}
