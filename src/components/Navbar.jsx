@@ -24,10 +24,10 @@ const Navbar = ({ sceneLoaded }) => {
               onClick={() => isMenuOpen && setIsMenuOpen(false)}
             >
               {({ isActive }) => (
-                  <p className={`${isActive ? 'info-btn-animated_text' : 'blue-gradient_text'} ${
+                  <p className={`${isActive ? 'info-btn-animated_text' : 'blue-gradient_text'} text-xl ${
                     isTouched && location.pathname === '/' ? 'animate-buttonPress' : ''
                   }`}>
-                      Folio Island
+                      Home
                   </p>
               )}
             </NavLink>

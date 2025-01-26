@@ -8,13 +8,18 @@ const Plane = ({ isRotating, ...props }) => {
   const planeRef = useRef();
   const { scene, animations } = useGLTF(planeScene);
   const { actions } = useAnimations(animations, planeRef);
-  const lastY = useRef(props.position[1]);
+  const currentSpeed = useRef(0);
 
   // Memoize animation speeds
-  const animationSpeeds = useMemo(() => ({
-    rotating: 2.2,
-    normal: 0.8,
-    transitionDuration: 0.5
+  const constants = useMemo(() => ({
+    speeds: {
+      rotating: 2.2,
+      normal: 0.8,
+    },
+    damping: {
+      factor: 0.95,
+      threshold: 0.001
+    }
   }), []);
 
   // Initialize and handle animations
@@ -22,46 +27,36 @@ const Plane = ({ isRotating, ...props }) => {
     const action = actions['Take 001'];
     if (!action) return;
 
-    // Ensure animation is always playing
+    // Always keep animation playing
     action.play();
 
-    // Get current speed before transition
-    const startSpeed = isRotating ? animationSpeeds.rotating : animationSpeeds.normal;
-    const targetSpeed = isRotating ? animationSpeeds.rotating : animationSpeeds.normal;
-
-    let animationFrameId;
-
-    // Only perform speed transition if there's a change
-    if (action.getEffectiveTimeScale() !== targetSpeed) {
-      const startTime = Date.now();
-
-      const animate = () => {
-        const elapsed = (Date.now() - startTime) / 1000;
-        const progress = Math.min(elapsed / animationSpeeds.transitionDuration, 1);
-
-        const newSpeed = startSpeed + (targetSpeed - startSpeed) * progress;
-        action.setEffectiveTimeScale(newSpeed);
-
-        if (progress < 1) {
-          animationFrameId = requestAnimationFrame(animate);
-        }
-      };
-
-      animate();
+    // Set initial speed based on rotation state
+    if (isRotating) {
+      currentSpeed.current = constants.speeds.rotating;
     }
 
-    // Cleanup function
     return () => {
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-      // Don't stop the animation on cleanup, just let it continue
+      // Don't stop animation on cleanup
     };
-  }, [actions, isRotating, animationSpeeds]);
+  }, [actions, isRotating, constants.speeds]);
 
-  // Optional: Add subtle floating motion
+  //  Handle speed changes and floating motion subtle floating motion
   useFrame((_, delta) => {
-    if (!planeRef.current) return;
+    if (!planeRef.current || !actions['Take 001']) return;
+
+    const action = actions['Take 001'];
+
+    if (isRotating) {
+      currentSpeed.current = constants.speeds.rotating;
+    } else {
+      currentSpeed.current = Math.max(
+        constants.speeds.normal,
+        currentSpeed.current * constants.damping.factor
+      );
+    }
+
+    // Apply the current speed to the animation
+    action.setEffectiveTimeScale(currentSpeed.current);
 
     let targetY = props.position[1];
 

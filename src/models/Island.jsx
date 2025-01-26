@@ -7,7 +7,7 @@ import { throttle } from 'lodash';
 
 import islandScene from '../assets/3d/island.glb';
 
-const Island = ({isRotating, setIsRotating, setCurrentStage, ...props}) => {
+const Island = ({isRotating, setIsRotating, setCurrentStage, onMovementChange, ...props}) => {
   // --- Refs and Hooks ---
   const islandRef = useRef();
   const { gl, viewport } = useThree();
@@ -35,9 +35,13 @@ const Island = ({isRotating, setIsRotating, setCurrentStage, ...props}) => {
 
       if (Math.abs(rotationSpeed.current) < VELOCITY_THRESHOLD) {
         rotationSpeed.current = 0;
+        onMovementChange?.(false);
       } else {
         islandRef.current.rotation.y += rotationSpeed.current;
+        onMovementChange?.(true);
       }
+    } else {
+      onMovementChange?.(true);
     }
 
     const rotation = islandRef.current.rotation.y;

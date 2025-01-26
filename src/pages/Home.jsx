@@ -9,7 +9,6 @@ import Plane from '../models/Plane'
 import HomeInfo from '../components/HomeInfo'
 import { Volume2 } from 'lucide-react'
 import sakura from '../assets/sakura.mp3'
-import Footer from '../components/Footer'
 
 // Performance monitoring component
 const PerformanceMonitor = () => {
@@ -47,6 +46,7 @@ const Home = ({ setSceneLoaded }) => {
   const [localSceneLoaded, setLocalSceneLoaded] = useState(false);
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [quality, setQuality] = useState('high');
+  const [isIslandMoving, setIsIslandMoving] = useState(false);
 
   // Dynamic quality adjustment based on performance
   useEffect(() => {
