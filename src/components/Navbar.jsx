@@ -24,7 +24,7 @@ const Navbar = ({ sceneLoaded }) => {
               onClick={() => isMenuOpen && setIsMenuOpen(false)}
             >
               {({ isActive }) => (
-                  <p className={`${isActive ? 'info-btn-animated_text' : 'blue-gradient_text'} text-xl ${
+                  <p className={`${isActive ? 'info-btn-animated_text' : 'blue-gradient_text'} text-base sm:text-xl ${
                     isTouched && location.pathname === '/' ? 'animate-buttonPress' : ''
                   }`}>
                       Home

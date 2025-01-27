@@ -13,11 +13,11 @@ const Plane = ({ isRotating, ...props }) => {
   // Memoize animation speeds
   const constants = useMemo(() => ({
     speeds: {
-      rotating: 2.2,
-      normal: 0.8,
+      rotating: 2.5,
+      normal: 0.85,
     },
     damping: {
-      factor: 0.95,
+      factor: .99,
       threshold: 0.001
     }
   }), []);
@@ -41,7 +41,7 @@ const Plane = ({ isRotating, ...props }) => {
   }, [actions, isRotating, constants.speeds]);
 
   //  Handle speed changes and floating motion subtle floating motion
-  useFrame((_, delta) => {
+  useFrame(() => {
     if (!planeRef.current || !actions['Take 001']) return;
 
     const action = actions['Take 001'];

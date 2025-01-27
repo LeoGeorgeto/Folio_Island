@@ -22,10 +22,10 @@ const Island = ({isRotating, setIsRotating, setCurrentStage, onMovementChange, o
 
   // --- Stage Angles Configuration ---
   const stageAngles = useMemo(() => ({
-    4: { min: 5.45, max: 5.85 },
-    3: { min: 0.85, max: 1.3 },
-    2: { min: 2.4, max: 2.6 },
-    1: { min: 4.25, max: 4.75 }
+    4: { min: 5.3, max: 6 },
+    3: { min: 0.7, max: 1.5 },
+    2: { min: 2.2, max: 2.8 },
+    1: { min: 4, max: 5 }
   }), []);
 
   // --- Animation Frame Logic ---
