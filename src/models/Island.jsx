@@ -7,7 +7,7 @@ import { throttle } from 'lodash';
 
 import islandScene from '../assets/3d/island.glb';
 
-const Island = ({isRotating, setIsRotating, setCurrentStage, onMovementChange, ...props}) => {
+const Island = ({isRotating, setIsRotating, setCurrentStage, onMovementChange, onRotationUpdate, ...props}) => {
   // --- Refs and Hooks ---
   const islandRef = useRef();
   const { gl, viewport } = useThree();
@@ -52,6 +52,8 @@ const Island = ({isRotating, setIsRotating, setCurrentStage, onMovementChange, .
     );
     
     setCurrentStage(newStage ? Number(newStage[0]) : null);
+
+    onRotationUpdate?.(normalizedRotation);
   });
 
   // --- Event Handlers ---

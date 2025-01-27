@@ -1,6 +1,6 @@
 import { Suspense, useState, useEffect, useRef, useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { Stats, Preload } from '@react-three/drei'
+import { Preload } from '@react-three/drei'
 import Loader from '../components/Loader'
 import Island from '../models/Island'
 import Sky from '../models/Sky'
@@ -46,7 +46,7 @@ const Home = ({ setSceneLoaded }) => {
   const [localSceneLoaded, setLocalSceneLoaded] = useState(false);
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [quality, setQuality] = useState('high');
-  const [isIslandMoving, setIsIslandMoving] = useState(false);
+  const [islandRotation, setIslandRotation] = useState(0);
 
   // Dynamic quality adjustment based on performance
   useEffect(() => {
@@ -176,13 +176,14 @@ const Home = ({ setSceneLoaded }) => {
           <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" intensity={1} />
 
           <Bird />
-          <Sky isRotating={isRotating} />
+          <Sky islandRotation={islandRotation} />
           <Island
             {...screenAdjustments.island}
             isRotating={isRotating}
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
             quality={quality}
+            onRotationUpdate={setIslandRotation}
           />
           <Plane 
             isRotating={isRotating}

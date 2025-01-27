@@ -3,20 +3,14 @@ import { useEffect, useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import skySceneModel from '../assets/3d/sky.glb';
 
-const Sky = ({ isRotating }) => {
+const Sky = ({ islandRotation }) => {
   const skyRef = useRef();
   const { scene } = useGLTF(skySceneModel);
 
-  // Memoize rotation speed to prevent recreation
-  const rotationSpeed = useMemo(() => ({
-    value: 0.5
-  }), []);
+  useFrame(() => {
+    if (skyRef.current && islandRotation !== undefined) {
+      skyRef.current.rotation.y = islandRotation;
 
-  // Optimized frame update using delta time
-  useFrame((_, delta) => {
-    if (isRotating && skyRef.current) {
-      // Smooth rotation based on delta time
-      skyRef.current.rotation.y += rotationSpeed.value * delta;
     }
   });
 
