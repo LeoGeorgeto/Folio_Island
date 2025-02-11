@@ -40,4 +40,4 @@ jobs:
           local-dir: ./dist/  # Your build output directory
           server-dir: public_html/  # Hostinger's public directory
           dangerous-clean-slate: true  # This will delete existing files in the remote directory
-          timeout: 60000  # Increase timeout to 60 seconds
+          timeout: 60000  # Increase timeout to 60 seconds.
