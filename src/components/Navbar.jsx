@@ -2,17 +2,21 @@ import { NavLink, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
 
+// Navbar component with responsive navigation and mobile menu
 const Navbar = ({ sceneLoaded }) => {
     const location = useLocation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isTouched, setIsTouched] = useState(false);
 
+    // Close the menu whenever the route changes
     useEffect(() => {
       setIsMenuOpen(false);
     }, [location.pathname]);
-
+    
+    // Hide navbar if the scene is not loaded and the route is the home page
     if (!sceneLoaded && location.pathname === '/') return null;
     
+    // Reusable class string for navigation buttons
     const commonButtonClasses = `nav-animated-btn min-w-[120px] h-[55px] px-4 py-4 rounded-lg flex items-center justify-center font-bold btn-front ${
       location.pathname === '/' ? 'hover:animate-none active:animate-none md:hover:animate-initial' : ''
     }`;

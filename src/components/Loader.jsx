@@ -1,5 +1,6 @@
 import { Html } from "@react-three/drei"
 
+// Loader component displaying a spinning animation while loading
 const Loader = () => {
   return (
     <Html>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+// Call-to-action component encouraging users to contact for project collaboration
 const CTA = () => {
   return (
     <section className='cta'>

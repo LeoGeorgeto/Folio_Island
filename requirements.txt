@@ -1,0 +1,35 @@
+# Core packages for React and Vite
+react
+react-dom
+vite
+
+# Three.js and React Three Fiber packages for 3D rendering
+three
+@react-three/fiber
+@react-three/drei
+@react-spring/three
+
+# EmailJS for contact form
+emailjs-com
+
+# Routing and navigation
+react-router-dom
+
+# Utility libraries
+lodash
+
+# UI and icons
+lucide-react
+
+# CSS framework and styling
+tailwindcss
+postcss
+autoprefixer
+
+# Linting and formatting (optional but recommended based on `eslint.config.js`)
+eslint
+eslint-plugin-react
+eslint-plugin-react-hooks
+eslint-plugin-import
+eslint-plugin-jsx-a11y
+eslint-config-airbnb

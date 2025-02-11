@@ -16,9 +16,12 @@ const Fox = ( {currentAnimation, ...props} ) => {
   const { nodes, materials, animations } = useGLTF(scene)
   const { actions } = useAnimations(animations, group)
 
+  // Effect to handle animation changes when `currentAnimation` prop changes
   useEffect(() => {
+    // Stop all current animations
     Object.values(actions).forEach((action) => action.stop());
 
+    // Play the selected animation if it exists
     if (actions[currentAnimation]) {
         actions[currentAnimation].play();
     }
