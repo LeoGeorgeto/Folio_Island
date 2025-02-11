@@ -35,8 +35,8 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps  # Try FTPS first
-          port: 21  # Standard FTP/FTPS port
+          protocol: sftp  # Try FTPS first
+          port: 22  # Standard FTP/FTPS port
           local-dir: ./dist/  # Your build output directory
           server-dir: public_html/  # Hostinger's public directory
           dangerous-clean-slate: true  # This will delete existing files in the remote directory
