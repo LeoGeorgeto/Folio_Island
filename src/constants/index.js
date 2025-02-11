@@ -1,7 +1,6 @@
 import { ifa, mercedes } from "../assets/images";
 import {
     car,
-    contact,
     css,
     estate,
     django,
@@ -15,7 +14,6 @@ import {
     powerbi,
     nextjs,
     nodejs,
-    pouncepass,
     react,
     redux,
     flask,
@@ -162,9 +160,9 @@ export const projects = [
     {
         iconUrl: threads,
         theme: 'btn-back-green',
-        name: 'Coming Soon!',
-        description: '',
-        link: '',
+        name: 'Cloud Resume Challenge',
+        description: 'Engineered a cloud-native resume website using AWS services and Infrastructure as Code, featuring automated deployments, serverless visitor tracking, and multi-tool infrastructure management with Terraform and AWS SAM.',
+        link: 'https://github.com/stars/LeoGeorgeto/lists/cloud-resume-challenge',
     },
     {
         iconUrl: car,
