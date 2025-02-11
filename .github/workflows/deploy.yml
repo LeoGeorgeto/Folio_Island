@@ -39,6 +39,7 @@ jobs:
           local-dir: ./dist/  # Deploy only contents of 'dist'
           server-dir: public_html/  # Your public directory on Hostinger
           exclude: |
+            .htaccess
             **/.git*
             **/node_modules
             **/package.json
