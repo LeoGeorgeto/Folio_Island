@@ -153,23 +153,23 @@ export const projects = [
     {
         iconUrl: ticket,
         theme: 'btn-back-red',
-        name: 'PouncePass',
-        description: 'Developed a full-stack event ticketing platform using Django and React that streamlines the buying and selling of event tickets.',
-        link: 'https://github.com/PouncePass-Org',
-    },
-    {
-        iconUrl: threads,
-        theme: 'btn-back-green',
         name: 'Cloud Resume Challenge',
         description: 'Engineered a cloud-native resume website using AWS services and Infrastructure as Code, featuring automated deployments, serverless visitor tracking, and multi-tool infrastructure management with Terraform and AWS SAM.',
         link: 'https://github.com/stars/LeoGeorgeto/lists/cloud-resume-challenge',
     },
     {
+        iconUrl: threads,
+        theme: 'btn-back-green',
+        name: '3D Interactive Portfolio',
+        description: 'Developed a responsive and immersive 3D portfolio website to showcase projects and skills. Leveraged React, Three.js, and React Three Fiber to create interactive scenes with animations, dynamic models, and performance optimizations. Features a contact form integrated with EmailJS and preloaded 3D assets for improved user experience.',
+        link: 'https://github.com/LeoGeorgeto/Folio_Island',
+    },
+    {
         iconUrl: car,
         theme: 'btn-back-blue',
-        name: 'Coming Soon!',
-        description: '',
-        link: '',
+        name: 'PouncePass',
+        description: 'Developed a full-stack event ticketing platform using Django and React that streamlines the buying and selling of event tickets.',
+        link: 'https://github.com/PouncePass-Org',
     },
     {
         iconUrl: snapgram,
